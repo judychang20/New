@@ -49,8 +49,8 @@ def welcome_page():
         bg.blit(image5, (0, 0))
 
 
-#button = tk.Button(width = 100, height = 100)
-#screen.blit(button, (500, 500))
+    button = tk.Button(width = 100, height = 100)
+    screen.blit(button, (500, 500))
 
     screen.blit(bg, (0,0))
     pg.display.update()
