@@ -43,7 +43,7 @@ def welcome_page():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
-            if event.type == pg.MOUSEBUTTONDOWN and 350 < mouse[0] < 850 and 470 < mouse[1] < 650:
+            if event.type == pg.MOUSEBUTTONDOWN and 310 < mouse[0] < 950 and 475 < mouse[1] < 560:
                 test_page()
 
 
@@ -77,17 +77,22 @@ def test_page():
     bg.blit(button_image, (110, 426))
     bg.blit(button_image, (110, 560))
 
+    lightbutton0 = pg.image.load("亮按鈕.png").convert()
+    lightbutton0.set_alpha(150)
+    lightbutton = pg.transform.scale(lightbutton0, (1000, 100)).convert()
+    cum = 0
+
     text1 = my_textfont.render("選項A", True, (255, 255, 255))
     bg.blit(text1, (130, 190))
 
-    text1 = my_textfont.render("選項B", True, (255, 255, 255))
-    bg.blit(text1, (130, 323))
+    text2 = my_textfont.render("選項B", True, (255, 255, 255))
+    bg.blit(text2, (130, 323))
 
-    text1 = my_textfont.render("選項C", True, (255, 255, 255))
-    bg.blit(text1, (130, 456))
+    text3 = my_textfont.render("選項C", True, (255, 255, 255))
+    bg.blit(text3, (130, 456))
 
-    text1 = my_textfont.render("選項D", True, (255, 255, 255))
-    bg.blit(text1, (130, 590))
+    text4 = my_textfont.render("選項D", True, (255, 255, 255))
+    bg.blit(text4, (130, 590))
 
     screen.blit(bg, (0, 0))
     pg.display.update()
@@ -131,7 +136,7 @@ def roulette_page():
     roulette_image0 = pg.image.load("roulette.png")
     roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
     pg.transform.rotate(roulette_image, 10)
-    bg.blit(roulette_image,(50, 150))
+    #bg.blit(roulette_image,(50, 150))
 
     pg.draw.polygon(bg, (0,0,0),((580,50), (680, 50), (630, 260)))
 
@@ -140,18 +145,22 @@ def roulette_page():
         #bg.blit(roulette_image, (50, 150))
         #pg.display.update()
 
-
     screen.blit(bg, (0, 0))
     pg.display.update()
 
     running = True
     while running:
+
         mouse = pg.mouse.get_pos()
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
             if event.type == pg.MOUSEBUTTONDOWN:
                 spotintro_page()
+        a = pg.transform.rotate(roulette_image, 40)
+        screen.blit(a, (0, 0))
+        #screen.blit(bg, (0, 0))
+        pg.display.update()
 
 def choosebetween_page():
     pass
@@ -172,6 +181,8 @@ def spotintro_page():
     screen.blit(bg, (0, 0))
     pg.display.update()
 
+
+
     running = True
     while running:
         mouse = pg.mouse.get_pos()
@@ -179,7 +190,8 @@ def spotintro_page():
             if event.type == pg.QUIT:
                 running = False
             if event.type == pg.MOUSEBUTTONDOWN:
-
+                pg.init()
+                welcome_page()
 
 
 welcome_page()
