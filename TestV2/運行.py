@@ -11,7 +11,7 @@ def welcome_page():
     title = my_titlefont.render("標題標題標題", True, (0, 0, 0))
     bg.blit(title, (475, 100))
 
-    text1 = my_textfont.render("文字文字文字文字？", True, (0, 0, 0))
+    text1 = my_textfont.render("今天要去哪裡玩？", True, (0, 0, 0))
     bg.blit(text1, (540, 275))
 
     button_image = pg.image.load("真亮按鈕.png").convert()
@@ -32,7 +32,7 @@ def test_page():
     background_image = pg.transform.scale(background_image0, (1280, 720)).convert()
     bg.blit(background_image, (0, 0))
 
-    title = my_titlefont1.render("心理測驗題目題目題目", True, (0, 0, 0))
+    title = my_titlefont1.render("選出現在最符合你的一句話", True, (0, 0, 0))
     bg.blit(title, (90, 50))
 
     button_image0 = pg.image.load("亮按鈕.png").convert()
@@ -48,16 +48,16 @@ def test_page():
     #lightbutton = pg.transform.scale(lightbutton0, (1000, 100)).convert()
     #cum = 0
 
-    text1 = my_textfont1.render("選項A", True, (255, 255, 255))
+    text1 = my_textfont1.render("好熱好累好不想做事，好想躺在床上度過一整天", True, (255, 255, 255))
     bg.blit(text1, (130, 190))
 
-    text2 = my_textfont1.render("選項B", True, (255, 255, 255))
+    text2 = my_textfont1.render("被都市的喧囂所埋沒的社畜，每天漫無目的地遊走", True, (255, 255, 255))
     bg.blit(text2, (130, 323))
 
-    text3 = my_textfont1.render("選項C", True, (255, 255, 255))
+    text3 = my_textfont1.render("隨時調整心態，面對突然而來的挑戰", True, (255, 255, 255))
     bg.blit(text3, (130, 456))
 
-    text4 = my_textfont1.render("選項D", True, (255, 255, 255))
+    text4 = my_textfont1.render("太陽從東邊升起，從西邊落下", True, (255, 255, 255))
     bg.blit(text4, (130, 590))
 
 def roulette_page():
@@ -71,6 +71,12 @@ def roulette_page():
     #bg.blit(roulette_image,(50, 150))
 
     pg.draw.polygon(bg, (0, 0, 0), ((580, 50), (680, 50), (630, 260)))
+
+
+def compare_page():
+    background_image0 = pg.image.load("第四頁背景.png")
+    background_image = pg.transform.scale(background_image0, (1280, 720)).convert()
+    bg.blit(background_image, (0, 0))
 
 
 def spotintro_page():
@@ -197,6 +203,10 @@ while running:
             test_page()
         if Cum == 2:
             roulette_page()
+        if Cum == 3:
+            compare_page()
+        if Cum == 4:
+            test_page()
         if Cum == 5:
             spotintro_page()
         if Cum == 6:
@@ -241,8 +251,8 @@ while running:
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
                     Cum = 0
-            if event.type == pg.MOUSEBUTTONDOWN:
-                print(mouse)
+            #if event.type == pg.MOUSEBUTTONDOWN:
+                # print(mouse)
             if 111 < mouse[0] < 348 and 205 < mouse[1] < 278:
                 exit_image0 = pg.image.load("亮區按鈕.png")
                 exit_image = pg.transform.scale(exit_image0, (238, 75))
@@ -401,7 +411,7 @@ while running:
             button_image0.set_alpha(150)
             button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
             bg.blit(button_image, (110, 160))
-            text1 = my_textfont1.render("選項A", True, (255, 255, 255))
+            text1 = my_textfont1.render("好熱好累好不想做事，好想躺在床上度過一整天", True, (255, 255, 255))
             bg.blit(text1, (130, 190))
             screen.blit(bg, (0, 0))
             pg.display.update()
@@ -412,7 +422,7 @@ while running:
             button_image0.set_alpha(150)
             button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
             bg.blit(button_image, (110, 293))
-            text1 = my_textfont1.render("選項B", True, (255, 255, 255))
+            text1 = my_textfont1.render("被都市的喧囂所埋沒的社畜，每天漫無目的地遊走", True, (255, 255, 255))
             bg.blit(text1, (130, 323))
             screen.blit(bg, (0, 0))
             pg.display.update()
@@ -423,7 +433,7 @@ while running:
             button_image0.set_alpha(150)
             button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
             bg.blit(button_image, (110, 426))
-            text1 = my_textfont1.render("選項C", True, (255, 255, 255))
+            text1 = my_textfont1.render("隨時調整心態，面對突然而來的挑戰", True, (255, 255, 255))
             bg.blit(text1, (130, 456))
             screen.blit(bg, (0, 0))
             pg.display.update()
@@ -434,12 +444,13 @@ while running:
             button_image0.set_alpha(150)
             button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
             bg.blit(button_image, (110, 560))
-            text1 = my_textfont1.render("選項D", True, (255, 255, 255))
+            text1 = my_textfont1.render("太陽從東邊升起，從西邊落下", True, (255, 255, 255))
             bg.blit(text1, (130, 590))
             screen.blit(bg, (0, 0))
             pg.display.update()
             if event.type == pg.MOUSEBUTTONDOWN:
                 Cum = 2
+
         elif Cum == 2 and Cir == 0 and Time < 30:
             roulette_image0 = pg.image.load("roulette.png")
             roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
@@ -465,7 +476,7 @@ while running:
             bg.blit(roulette_image, (50, 150))
             window_image = pg.image.load("視窗.png")
             bg.blit(window_image, (190, 150))
-            text1 = my_titlefont.render("某某區", True, (0, 0, 0))
+            text1 = my_titlefont.render("內湖區", True, (0, 0, 0))
             bg.blit(text1, (560, 230))
             screen.blit(bg, (0, 0))
             pg.display.update()
