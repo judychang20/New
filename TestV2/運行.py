@@ -72,6 +72,14 @@ def roulette_page():
 
     pg.draw.polygon(bg, (0, 0, 0), ((580, 50), (680, 50), (630, 260)))
 
+def choose_page():
+	background_image0 = pg.image.load("第四頁背景.png")
+	background_image = pg.transform.scale(background_image0, (1280, 720)).convert()
+	bg.blit(background_image, (0, 0))
+
+	title = my_titlefont.render("選擇", True, (0, 0, 0))
+	bg.blit(title, (580, 80))
+
 
 def spotintro_page():
     background_image0 = pg.image.load("第五頁背景.png")
@@ -183,318 +191,356 @@ pg.display.set_icon(icon_image)
 
 running = True
 while running:
-    mouse = pg.mouse.get_pos()
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
-        if Cum == 0:
-            welcome_page()
-        if Cum == 0.5:
-            test_page()
-            if event.type:
-                Cum = 1
-        if Cum == 1:
-            test_page()
-        if Cum == 2:
-            roulette_page()
-        if Cum == 5:
-            spotintro_page()
-        if Cum == 6:
-            list_image0 = pg.image.load("區選單.png")
-            #list_image = pg.transform.scale(list_image0, (1100, 550))
-            bg.blit(list_image0, (50, 70))
-            text2 = my_titlefont1.render("返回", True, (0, 0, 0))
-            bg.blit(text2, (1015, 535))
-            text2 = my_textfont.render("大安區", True, (0, 0, 0))
-            bg.blit(text2, (190, 225))
-            text2 = my_textfont.render("中正區", True, (0, 0, 0))
-            bg.blit(text2, (190, 323))
-            text2 = my_textfont.render("萬華區", True, (0, 0, 0))
-            bg.blit(text2, (190, 420))
-            text2 = my_textfont.render("士林區", True, (0, 0, 0))
-            bg.blit(text2, (455, 225))
-            text2 = my_textfont.render("內湖區", True, (0, 0, 0))
-            bg.blit(text2, (455, 323))
-            text2 = my_textfont.render("大同區", True, (0, 0, 0))
-            bg.blit(text2, (455, 420))
-            text2 = my_textfont.render("文山區", True, (0, 0, 0))
-            bg.blit(text2, (720, 225))
-            text2 = my_textfont.render("北投區", True, (0, 0, 0))
-            bg.blit(text2, (720, 323))
-            text2 = my_textfont.render("南港區", True, (0, 0, 0))
-            bg.blit(text2, (720, 420))
-            text2 = my_textfont.render("信義區", True, (0, 0, 0))
-            bg.blit(text2, (985, 225))
-            text2 = my_textfont.render("中山區", True, (0, 0, 0))
-            bg.blit(text2, (985, 323))
-            text2 = my_textfont.render("松山區", True, (0, 0, 0))
-            bg.blit(text2, (985, 420))
-            screen.blit(bg, (0,0))
-            pg.display.update()
-            if 959 < mouse[0] < 1140 and 517 < mouse[1] < 599:
-                exit_image0 = pg.image.load("亮返回.png")
-                exit_image = pg.transform.scale(exit_image0, (182, 82))
-                bg.blit(exit_image, (959, 517))
-                text2 = my_titlefont1.render("返回", True, (0, 0, 0))
-                bg.blit(text2, (1015, 535))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0
-            if event.type == pg.MOUSEBUTTONDOWN:
-                print(mouse)
-            if 111 < mouse[0] < 348 and 205 < mouse[1] < 278:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (111, 205))
-                text2 = my_textfont.render("大安區", True, (0, 0, 0))
-                bg.blit(text2, (190, 225))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 111 < mouse[0] < 348 and 303 < mouse[1] < 376:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (111, 303))
-                text2 = my_textfont.render("中正區", True, (0, 0, 0))
-                bg.blit(text2, (190, 323))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 111 < mouse[0] < 348 and 400 < mouse[1] < 473:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (111, 400))
-                text2 = my_textfont.render("萬華區", True, (0, 0, 0))
-                bg.blit(text2, (190, 420))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 375 < mouse[0] < 612 and 205 < mouse[1] < 278:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (375, 205))
-                text2 = my_textfont.render("士林區", True, (0, 0, 0))
-                bg.blit(text2, (455, 225))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 375 < mouse[0] < 612 and 303 < mouse[1] < 376:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (375, 303))
-                text2 = my_textfont.render("內湖區", True, (0, 0, 0))
-                bg.blit(text2, (455, 323))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 375 < mouse[0] < 612 and 400 < mouse[1] < 473:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (375, 400))
-                text2 = my_textfont.render("大同區", True, (0, 0, 0))
-                bg.blit(text2, (455, 420))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 638 < mouse[0] < 875 and 205 < mouse[1] < 278:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (638, 205))
-                text2 = my_textfont.render("文山區", True, (0, 0, 0))
-                bg.blit(text2, (720, 225))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 638 < mouse[0] < 875 and 303 < mouse[1] < 376:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (638, 303))
-                text2 = my_textfont.render("北投區", True, (0, 0, 0))
-                bg.blit(text2, (720, 323))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 638 < mouse[0] < 875 and 400 < mouse[1] < 473:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (638, 400))
-                text2 = my_textfont.render("南港區", True, (0, 0, 0))
-                bg.blit(text2, (720, 420))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 903 < mouse[0] < 1140 and 205 < mouse[1] < 278:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (903, 205))
-                text2 = my_textfont.render("信義區", True, (0, 0, 0))
-                bg.blit(text2, (985, 225))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 903 < mouse[0] < 1140 and 303 < mouse[1] < 376:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (903, 303))
-                text2 = my_textfont.render("中山區", True, (0, 0, 0))
-                bg.blit(text2, (985, 323))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
-            if 903 < mouse[0] < 1140 and 400 < mouse[1] < 473:
-                exit_image0 = pg.image.load("亮區按鈕.png")
-                exit_image = pg.transform.scale(exit_image0, (238, 75))
-                bg.blit(exit_image, (903, 400))
-                text2 = my_textfont.render("松山區", True, (0, 0, 0))
-                bg.blit(text2, (985, 420))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0.5
+	mouse = pg.mouse.get_pos()
+	for event in pg.event.get():
+		if event.type == pg.QUIT:
+			running = False
+		
+		#控制頁面
+		if Cum == 0:
+			welcome_page()
+		if Cum == 0.5:
+			test_page()
+			if event.type:
+				Cum = 1
+		if Cum == 1:
+			test_page()
+		if Cum == 2:
+			roulette_page()
+		if Cum == 3:
+			choose_page()
+		if Cum == 5:
+			spotintro_page()
 
-        if 310 < mouse[0] < 950 and 480 < mouse[1] < 560 and Cum == 0:
-            button_image = pg.image.load("按鈕.png").convert()
-            button_image.set_alpha(150)
-            bg.blit(button_image, (330, 480))
-            text2 = my_textfont.render("我還沒有想法", True, (255, 255, 255))
-            bg.blit(text2, (570, 505))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if event.type == pg.MOUSEBUTTONDOWN:
-                Cum = 1
-        elif 310 < mouse[0] < 950 and 350 < mouse[1] < 430 and Cum == 0:
-            button_image = pg.image.load("按鈕.png").convert()
-            button_image.set_alpha(150)
-            bg.blit(button_image, (330, 350))
-            text2 = my_textfont.render("我想去___區", True, (255, 255, 255))
-            bg.blit(text2, (570, 375))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if event.type == pg.MOUSEBUTTONDOWN:
-                Cum = 6
+		#區域選單
+		if Cum == 6:
+			list_image0 = pg.image.load("區選單.png")
+			#list_image = pg.transform.scale(list_image0, (1100, 550))
+			bg.blit(list_image0, (50, 70))
+			text2 = my_titlefont1.render("返回", True, (0, 0, 0))
+			bg.blit(text2, (1015, 535))
+			text2 = my_textfont.render("大安區", True, (0, 0, 0))
+			bg.blit(text2, (190, 225))
+			text2 = my_textfont.render("中正區", True, (0, 0, 0))
+			bg.blit(text2, (190, 323))
+			text2 = my_textfont.render("萬華區", True, (0, 0, 0))
+			bg.blit(text2, (190, 420))
+			text2 = my_textfont.render("士林區", True, (0, 0, 0))
+			bg.blit(text2, (455, 225))
+			text2 = my_textfont.render("內湖區", True, (0, 0, 0))
+			bg.blit(text2, (455, 323))
+			text2 = my_textfont.render("大同區", True, (0, 0, 0))
+			bg.blit(text2, (455, 420))
+			text2 = my_textfont.render("文山區", True, (0, 0, 0))
+			bg.blit(text2, (720, 225))
+			text2 = my_textfont.render("北投區", True, (0, 0, 0))
+			bg.blit(text2, (720, 323))
+			text2 = my_textfont.render("南港區", True, (0, 0, 0))
+			bg.blit(text2, (720, 420))
+			text2 = my_textfont.render("信義區", True, (0, 0, 0))
+			bg.blit(text2, (985, 225))
+			text2 = my_textfont.render("中山區", True, (0, 0, 0))
+			bg.blit(text2, (985, 323))
+			text2 = my_textfont.render("松山區", True, (0, 0, 0))
+			bg.blit(text2, (985, 420))
+			screen.blit(bg, (0,0))
+			pg.display.update()
+			if 959 < mouse[0] < 1140 and 517 < mouse[1] < 599:
+				exit_image0 = pg.image.load("亮返回.png")
+				exit_image = pg.transform.scale(exit_image0, (182, 82))
+				bg.blit(exit_image, (959, 517))
+				text2 = my_titlefont1.render("返回", True, (0, 0, 0))
+				bg.blit(text2, (1015, 535))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0
+			if event.type == pg.MOUSEBUTTONDOWN:
+				print(mouse)
+			if 111 < mouse[0] < 348 and 205 < mouse[1] < 278:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (111, 205))
+				text2 = my_textfont.render("大安區", True, (0, 0, 0))
+				bg.blit(text2, (190, 225))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 111 < mouse[0] < 348 and 303 < mouse[1] < 376:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (111, 303))
+				text2 = my_textfont.render("中正區", True, (0, 0, 0))
+				bg.blit(text2, (190, 323))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 111 < mouse[0] < 348 and 400 < mouse[1] < 473:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (111, 400))
+				text2 = my_textfont.render("萬華區", True, (0, 0, 0))
+				bg.blit(text2, (190, 420))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 375 < mouse[0] < 612 and 205 < mouse[1] < 278:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (375, 205))
+				text2 = my_textfont.render("士林區", True, (0, 0, 0))
+				bg.blit(text2, (455, 225))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 375 < mouse[0] < 612 and 303 < mouse[1] < 376:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (375, 303))
+				text2 = my_textfont.render("內湖區", True, (0, 0, 0))
+				bg.blit(text2, (455, 323))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 375 < mouse[0] < 612 and 400 < mouse[1] < 473:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (375, 400))
+				text2 = my_textfont.render("大同區", True, (0, 0, 0))
+				bg.blit(text2, (455, 420))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 638 < mouse[0] < 875 and 205 < mouse[1] < 278:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (638, 205))
+				text2 = my_textfont.render("文山區", True, (0, 0, 0))
+				bg.blit(text2, (720, 225))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 638 < mouse[0] < 875 and 303 < mouse[1] < 376:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (638, 303))
+				text2 = my_textfont.render("北投區", True, (0, 0, 0))
+				bg.blit(text2, (720, 323))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 638 < mouse[0] < 875 and 400 < mouse[1] < 473:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (638, 400))
+				text2 = my_textfont.render("南港區", True, (0, 0, 0))
+				bg.blit(text2, (720, 420))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 903 < mouse[0] < 1140 and 205 < mouse[1] < 278:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (903, 205))
+				text2 = my_textfont.render("信義區", True, (0, 0, 0))
+				bg.blit(text2, (985, 225))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 903 < mouse[0] < 1140 and 303 < mouse[1] < 376:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (903, 303))
+				text2 = my_textfont.render("中山區", True, (0, 0, 0))
+				bg.blit(text2, (985, 323))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+			if 903 < mouse[0] < 1140 and 400 < mouse[1] < 473:
+				exit_image0 = pg.image.load("亮區按鈕.png")
+				exit_image = pg.transform.scale(exit_image0, (238, 75))
+				bg.blit(exit_image, (903, 400))
+				text2 = my_textfont.render("松山區", True, (0, 0, 0))
+				bg.blit(text2, (985, 420))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0.5
+		
+		#主畫面
+		if 310 < mouse[0] < 950 and 480 < mouse[1] < 560 and Cum == 0:
+			button_image = pg.image.load("按鈕.png").convert()
+			button_image.set_alpha(150)
+			bg.blit(button_image, (330, 480))
+			text2 = my_textfont.render("我還沒有想法", True, (255, 255, 255))
+			bg.blit(text2, (570, 505))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				Cum = 1
+		elif 310 < mouse[0] < 950 and 350 < mouse[1] < 430 and Cum == 0:
+			button_image = pg.image.load("按鈕.png").convert()
+			button_image.set_alpha(150)
+			bg.blit(button_image, (330, 350))
+			text2 = my_textfont.render("我想去___區", True, (255, 255, 255))
+			bg.blit(text2, (570, 375))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				Cum = 6
 
-        #elif Acum == 1:
-            #list_image0 = pg.image.load("區選單.png")
-            #list_image = pg.transform.scale(list_image0,(350, 250)).convert()
-            #list_image.set_alpha(200)
-            #bg.blit(list_image, (650, 200))
-            #screen.blit(bg, (0, 0))
-            #pg.display.update()
-        #elif event.type == pg.MOUSEBUTTONDOWN and Cum == 0 and Acum == 1:
-            #welcome_page()
-            #screen.blit(bg, (0, 0))
-            #g.display.update()
-        elif 110 < mouse[0] < 1110 and 160 < mouse[1] < 260 and Cum == 1:
-            button_image0 = pg.image.load("選項.png").convert()
-            button_image0.set_alpha(150)
-            button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
-            bg.blit(button_image, (110, 160))
-            text1 = my_textfont1.render("選項A", True, (255, 255, 255))
-            bg.blit(text1, (130, 190))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if event.type == pg.MOUSEBUTTONDOWN:
-                Cum = 2
-        elif 110 < mouse[0] < 1110 and 293 < mouse[1] < 393 and Cum == 1:
-            button_image0 = pg.image.load("選項.png").convert()
-            button_image0.set_alpha(150)
-            button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
-            bg.blit(button_image, (110, 293))
-            text1 = my_textfont1.render("選項B", True, (255, 255, 255))
-            bg.blit(text1, (130, 323))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if event.type == pg.MOUSEBUTTONDOWN:
-                Cum = 2
-        elif 110 < mouse[0] < 1110 and 426 < mouse[1] < 526 and Cum == 1:
-            button_image0 = pg.image.load("選項.png").convert()
-            button_image0.set_alpha(150)
-            button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
-            bg.blit(button_image, (110, 426))
-            text1 = my_textfont1.render("選項C", True, (255, 255, 255))
-            bg.blit(text1, (130, 456))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if event.type == pg.MOUSEBUTTONDOWN:
-                Cum = 2
-        elif 110 < mouse[0] < 1110 and 560 < mouse[1] < 660 and Cum == 1:
-            button_image0 = pg.image.load("選項.png").convert()
-            button_image0.set_alpha(150)
-            button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
-            bg.blit(button_image, (110, 560))
-            text1 = my_textfont1.render("選項D", True, (255, 255, 255))
-            bg.blit(text1, (130, 590))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if event.type == pg.MOUSEBUTTONDOWN:
-                Cum = 2
-        elif Cum == 2 and Cir == 0 and Time < 30:
-            roulette_image0 = pg.image.load("roulette.png")
-            roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
-            # pg.transform.rotate(roulette_image, 10)
-            bg.blit(roulette_image, (50, 150))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            Cir = 1
-            Time += 1
-        elif Cum == 2 and Cir == 1 and Time < 30:
-            Cir = 0
-            roulette_image0 = pg.image.load("roulette.png")
-            roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
-            a = pg.transform.rotate(roulette_image, 160)
-            bg.blit(a, (-110, -11))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            Time += 1
-        elif Cum == 2 and Time == 30:
-            roulette_image0 = pg.image.load("roulette.png")
-            roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
-            # pg.transform.rotate(roulette_image, 10)
-            bg.blit(roulette_image, (50, 150))
-            window_image = pg.image.load("視窗.png")
-            bg.blit(window_image, (190, 150))
-            text1 = my_titlefont.render("某某區", True, (0, 0, 0))
-            bg.blit(text1, (560, 230))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if 682 < mouse[0] < 992 and 348 < mouse[1] < 458:
-                sure_image0 = pg.image.load("確定.png")
-                sure_image = pg.transform.scale(sure_image0, (310, 110))
-                bg.blit(sure_image, (682, 348))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Time = 0
-                    Cum = 5
-        elif Cum == 5:
-            smallwindow_image0 = pg.image.load("再玩一次.png")
-            smallwindow_image = pg.transform.scale(smallwindow_image0, (207, 72))
-            bg.blit(smallwindow_image, (1000, 600))
-            screen.blit(bg, (0, 0))
-            pg.display.update()
-            if 1000 < mouse[0] < 1207 and 600 < mouse[1] < 672:
-                smallwindow_image0 = pg.image.load("亮再玩一次.png")
-                smallwindow_image = pg.transform.scale(smallwindow_image0, (207, 72))
-                bg.blit(smallwindow_image, (1000, 600))
-                screen.blit(bg, (0, 0))
-                pg.display.update()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    Cum = 0
-        else:
-            screen.blit(bg, (0, 0))
-            pg.display.update()
+		#elif Acum == 1:
+			#list_image0 = pg.image.load("區選單.png")
+			#list_image = pg.transform.scale(list_image0,(350, 250)).convert()
+			#list_image.set_alpha(200)
+			#bg.blit(list_image, (650, 200))
+			#screen.blit(bg, (0, 0))
+			#pg.display.update()
+		#elif event.type == pg.MOUSEBUTTONDOWN and Cum == 0 and Acum == 1:
+			#welcome_page()
+			#screen.blit(bg, (0, 0))
+			#g.display.update()
+
+		#心理測驗畫面
+		elif 110 < mouse[0] < 1110 and 160 < mouse[1] < 260 and Cum == 1:
+			button_image0 = pg.image.load("選項.png").convert()
+			button_image0.set_alpha(150)
+			button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
+			bg.blit(button_image, (110, 160))
+			text1 = my_textfont1.render("選項A", True, (255, 255, 255))
+			bg.blit(text1, (130, 190))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				Cum = 2
+		elif 110 < mouse[0] < 1110 and 293 < mouse[1] < 393 and Cum == 1:
+			button_image0 = pg.image.load("選項.png").convert()
+			button_image0.set_alpha(150)
+			button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
+			bg.blit(button_image, (110, 293))
+			text1 = my_textfont1.render("選項B", True, (255, 255, 255))
+			bg.blit(text1, (130, 323))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				Cum = 2
+		elif 110 < mouse[0] < 1110 and 426 < mouse[1] < 526 and Cum == 1:
+			button_image0 = pg.image.load("選項.png").convert()
+			button_image0.set_alpha(150)
+			button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
+			bg.blit(button_image, (110, 426))
+			text1 = my_textfont1.render("選項C", True, (255, 255, 255))
+			bg.blit(text1, (130, 456))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				Cum = 2
+		elif 110 < mouse[0] < 1110 and 560 < mouse[1] < 660 and Cum == 1:
+			button_image0 = pg.image.load("選項.png").convert()
+			button_image0.set_alpha(150)
+			button_image = pg.transform.scale(button_image0, (1000, 100)).convert()
+			bg.blit(button_image, (110, 560))
+			text1 = my_textfont1.render("選項D", True, (255, 255, 255))
+			bg.blit(text1, (130, 590))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				Cum = 2
+		#輪盤頁面
+		elif Cum == 2 and Cir == 0 and Time < 30:
+			roulette_image0 = pg.image.load("roulette.png")
+			roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
+			# pg.transform.rotate(roulette_image, 10)
+			bg.blit(roulette_image, (50, 150))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			Cir = 1
+			Time += 1
+		elif Cum == 2 and Cir == 1 and Time < 30:
+			Cir = 0
+			roulette_image0 = pg.image.load("roulette.png")
+			roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
+			a = pg.transform.rotate(roulette_image, 160)
+			bg.blit(a, (-110, -11))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			Time += 1
+		elif Cum == 2 and Time == 30:
+			roulette_image0 = pg.image.load("roulette.png")
+			roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
+			# pg.transform.rotate(roulette_image, 10)
+			bg.blit(roulette_image, (50, 150))
+			window_image = pg.image.load("視窗.png")
+			bg.blit(window_image, (190, 150))
+			text1 = my_titlefont.render("某某區", True, (0, 0, 0))
+			bg.blit(text1, (560, 230))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if 682 < mouse[0] < 992 and 348 < mouse[1] < 458:
+				sure_image0 = pg.image.load("確定.png")
+				sure_image = pg.transform.scale(sure_image0, (310, 110))
+				bg.blit(sure_image, (682, 348))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Time = 0
+					Cum = 5
+		#兩兩選擇頁面
+		elif Cum == 3:
+			choose_card0 = pg.image.load("選擇卡.png")
+			choose_card = pg.transform.scale(choose_card0, (400, 500)).convert()
+			bg.blit(choose_card, (100, 150))
+			bg.blit(choose_card, (800, 150))
+			# rect = choose_card.get_rect()
+			# rect.center = (100,150)
+			# x, y = rect.topleft
+			# speed = 3
+			# clock = pg.time.Clock()
+			# if event.type == pg.MOUSEBUTTONDOWN: #按下左邊圖
+				# x += speed
+				# rect_center = (x, y)
+				
+			'''
+			image1 = pg.image.load("input().png")
+			destination1 = pg.transform.scale(image1, (1150, 1150)).convert_alpha()
+			image2 = pg.image.load("input().png")
+			destination2 = pg.transform.scale(image2, (1150, 1150)).convert_alpha()
+			'''
+			text1 = my_titlefont.render("輸入景點名稱", True, (0, 0, 0))
+			bg.blit(text1, (140, 560))
+			bg.blit(text1, (840, 560))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+
+		#最終顯示畫面
+		elif Cum == 5:
+			smallwindow_image0 = pg.image.load("再玩一次.png")
+			smallwindow_image = pg.transform.scale(smallwindow_image0, (207, 72))
+			bg.blit(smallwindow_image, (1000, 600))
+			screen.blit(bg, (0, 0))
+			pg.display.update()
+			if 1000 < mouse[0] < 1207 and 600 < mouse[1] < 672:
+				smallwindow_image0 = pg.image.load("亮再玩一次.png")
+				smallwindow_image = pg.transform.scale(smallwindow_image0, (207, 72))
+				bg.blit(smallwindow_image, (1000, 600))
+				screen.blit(bg, (0, 0))
+				pg.display.update()
+				if event.type == pg.MOUSEBUTTONDOWN:
+					Cum = 0
+		else:
+			screen.blit(bg, (0, 0))
+			pg.display.update()
 
 
 pg.quit()
