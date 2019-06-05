@@ -76,20 +76,24 @@ def compare_page():
     background_image = pg.transform.scale(background_image0, (1280, 720)).convert()
     bg.blit(background_image, (0, 0))
 
-def iluustrate_bolck():
+def illustrate_bolck():
     """進入兩兩選擇頁面顯示說明"""
     illustrate_image0 = pg.image.load("說明欄.png")
-    illustate_image = pg.transform.scale(illustrate_image0, (500, 100).convert())
+    illustate_image = pg.transform.scale(illustrate_image0, (500, 100)).convert()
+    illustarte_text = my_textfont2.render("點擊偏好的景點", True, (0, 0, 0))
     move = 0
+	
     for i in range(1, 201):
 
         if i <= 101:
             move = i
             bg.blit(illustate_image, (100, 0+move))
+		    bg.blit(illustarte_text, (110, 2+move))
 			screen.blit(bg, (0, 0))
         else:
-		    move = 100 - i
-			bg.blit(illustate_image, (100, 0+move))
+            move = 100 - i
+            bg.blit(illustate_image, (100, 0+move))
+	        bg.blit(illustarte_text, (110, 2+move))
 			screen.blit(bg, (0, 0))
 
 
@@ -211,8 +215,6 @@ pg.display.set_icon(icon_image)      #設定程式的icon
 running = True
 while running:
     mouse = pg.mouse.get_pos() #定位滑鼠所在位置
-	if Acum == 0 and Cum == 3:
-	    iluustrate_bolck()
     if Acum == 1 and Cum == 3: #當在兩兩選擇頁面選擇右邊圖片時進入此if
 
         background_image0 = pg.image.load("第四頁背景.png")
@@ -677,8 +679,10 @@ while running:
             if event.type == pg.MOUSEBUTTONDOWN and 100 < mouse[0] < 500 and 100 < mouse[1] < 600:
                 Acum = 2
             if event.type == pg.MOUSEBUTTONDOWN and 800 < mouse[0] < 1200 and 100 < mouse[1] < 600:
-                Acum = 1
-            # 若按下右卡片，左邊移動，按下左卡片，右邊移動
+                Acum = 1# 若按下右卡片，左邊移動，按下左卡片，右邊移動
+			else:
+			    illustrate_bolck()
+            
 
 
 
