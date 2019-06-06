@@ -226,28 +226,24 @@ def test_haveidea_page(x, y, z):
 
 def roulette_page(x, y, z):
 	font1 = pg.font.SysFont("myfont.ttf", 56)
-	# if Time // 2 == 0:
-		# Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-		# Picture("roulette.png", 50, 150, 1150, 1150, bg).buildup()
-		# Time += 1
-		# return Time
-	# elif Time // 2 != 0:
-		# Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-		# Picture("roulette.png", -110, -11, 1150, 1150, bg).buildup()
-		# Time += 1
-		# return Time
+	Time = 0
+	if x < 500 and Time < 30:
+		Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
+		Picture("左搖.png", 100, 100, 600, 600, bg).buildup()
+		Time += 5
+	elif x > 500 and Time < 30:
+		Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
+		Picture("右搖.png", 500, 100, 600, 600, bg).buildup()
+		Time += 5
+	elif Time == 30:
+		Picture("第三頁背景.png", 0, 0, 1280, x720, bg).buildup()
+		Picture("roulette.png", 50, 150, 1150, 1150, bg).buildup()
+		Picture("視窗.png", 190, 150, 800, 400, bg).buildup()
+		result0 = "隨機結果"
+		result = Word(font1, result0, 560, 230, bg, (0, 0, 0)).buildup()
+		Picture("確定.png", 682, 348, 310, 110, bg).buildup()
+		d = Picture("確定.png", 682, 348, 310, 110, bg).buildup()
 
-	#elif Time == 30:
-	Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	Picture("roulette.png", 50, 150, 1150, 1150, bg).buildup()
-	Picture("視窗.png", 190, 150, 800, 400, bg).buildup()
-	result0 = "隨機結果"
-	result = Word(font1, result0, 560, 230, bg, (0, 0, 0)).buildup()
-	Picture("確定.png", 682, 348, 310, 110, bg).buildup()
-	d = Picture("確定.png", 682, 348, 310, 110, bg).buildup()
-	# if d.choose(x, y, z) == True:
-		# Cum == 7
-		# return Cum
 
 def spotintro_page(x, y, z):
 	font1 = pg.font.SysFont("myfont.ttf", 20)
@@ -277,7 +273,7 @@ def spotintro_page(x, y, z):
 		Word(font1, opentime, 100, y, bg, (0, 0, 0)).buildup()
 
 	#輸出介紹文字	
-	introduce_list["      木柵市場被作家劉克襄譽為台北盆地的清明上河圖，其生鮮食材來源",
+	introduce_list = ["      木柵市場被作家劉克襄譽為台北盆地的清明上河圖，其生鮮食材來源",
 	"除了周遭貓空、草湳山區的農作，石碇、深坑、平溪的產品，甚至宜蘭員",
 	"山絲瓜、三星蔥皆由產地直銷而來。此外市場內外的美食也是不可錯過的",
 	"去處。"]
@@ -285,9 +281,10 @@ def spotintro_page(x, y, z):
 		y = 450 + 30*j
 		Word(font1, introduce_list[j], 540, y, bg, (0, 0, 0)).buildup()
 
-	a = Button("亮再玩一次.png", "再玩一次.png", 1000, 600, bg, 207, 72, "", 200)
-	a.WaitToMouseOver()
-	a.isOver(x, y, z, 0)
+	# no_word = Word(font2, " ", 1000, 600, bg, (255, 255, 255))
+	# a = Button("亮再玩一次.png", "再玩一次.png", 1000, 600, bg, 207, 72, no_word, 200)
+	# a.WaitToMouseOver()
+	# a.isOver(x, y, z, 0)
 
 def choosedict_page(x, y, z):
 	font2 = pg.font.SysFont("myfont.ttf", 23)
