@@ -69,6 +69,7 @@ class Picture:
 		a = pg.image.load(self.picture)
 		b = pg.transform.scale(a, (self.xsize, self.ysize))
 		self.surface.blit(b, (self.xplace, self.yplace))
+		pg.display.update()
 
 	def x_move(self, x_bound):
 		a = pg.image.load(self.picture)
@@ -111,15 +112,15 @@ def Main(circumstance, x, y, z):
 	if circumstance == 2:
 		test_haveidea_page(x, y, z)
 	if circumstance == 3:
-		compare_page()
+		compare_page(x, y, z)
 	if circumstance == 4:
-		compare_lose_page()
+		compare_lose_page(x, y, z)
 	if circumstance == 5:
-		compare_win_page()
+		compare_win_page(x, y, z)
 	if circumstance == 6:
-		roulette_page()
+		roulette_page(x, y, z)	
 	if circumstance == 7:
-		spotintro_page()
+		spotintro_page(x, y, z)
 	if circumstance == 8:
 		choosedict_page(x, y, z)
 
@@ -194,28 +195,28 @@ def test_haveidea_page(x, y, z):
 	c.isOver(x, y, z, 3)
 	d.isOver(x, y, z, 3)
 
-def compare_page():
-	font1 = pg.font.SysFont("myfont.ttf", 35)
-	font2 = pg.font.SysFont("myfont.ttf", 23)
-	Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
+# def compare_page():
+	# font1 = pg.font.SysFont("myfont.ttf", 35)
+	# font2 = pg.font.SysFont("myfont.ttf", 23)
+	# Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
 	
 	
 
-def compare_lose_page(x, y ,z):
-	font1 = pg.font.SysFont("myfont.ttf", 35)
-	font2 = pg.font.SysFont("myfont.ttf", 23)
-	Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	a = Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
-	b = Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
-	if a.choose(x, y, z):
-		a.x_move(-500).buildup()
-	elif b.choose(x, y, z):
-		b.x_move(1300).buildup()
+# def compare_lose_page(x, y ,z):
+	# font1 = pg.font.SysFont("myfont.ttf", 35)
+	# font2 = pg.font.SysFont("myfont.ttf", 23)
+	# Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
+	# a = Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
+	# b = Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
+	# if a.choose(x, y, z):
+		# a.x_move(-500).buildup()
+	# elif b.choose(x, y, z):
+		# b.x_move(1300).buildup()
 
-def compare_win_page():
-	font1 = pg.font.SysFont("myfont.ttf", 35)
-	font2 = pg.font.SysFont("myfont.ttf", 23)
-	Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
+# def compare_win_page():
+	# font1 = pg.font.SysFont("myfont.ttf", 35)
+	# font2 = pg.font.SysFont("myfont.ttf", 23)
+	# Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
 	# if Picture("選擇卡.png", 100, 100, 400, 500, bg).choose(x, y, z) == True:
 		# Picture("選擇卡.png", 100, 100, 400, 500, bg).x_move(#中間)
 		# Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
@@ -223,26 +224,32 @@ def compare_win_page():
 		# Picture("選擇卡.png", 800, 100, 400, 500, bg).x_move(#中間)
 		# Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
 
-def roulette_page():
+def roulette_page(x, y, z):
 	font1 = pg.font.SysFont("myfont.ttf", 56)
-	Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	a = Picture("roulette.png", 50, 150, 1150, 1150, bg)
-	b = Picture("roulette.png", -110, -11, 1150, 1150, bg)
-	Time = 0
-	while Time <= 30:
-		if Time < 30:
-			if Time // 2 == 0:
-				a.buildup()
-			else:
-				b.buildup()
-		elif Time == 30:
-			result0 = "隨機結果"
-			result = Word(font1, result, 560, 230, bg, (0, 0, 0)).buildup()
-			d = Button("確定.png", "確定.png", 682, 348, bg, 310, 110, result, 200)
-			d.WaitToMouseOver()
-			d.isOver(x, y, z, 7)
+	# if Time // 2 == 0:
+		# Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
+		# Picture("roulette.png", 50, 150, 1150, 1150, bg).buildup()
+		# Time += 1
+		# return Time
+	# elif Time // 2 != 0:
+		# Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
+		# Picture("roulette.png", -110, -11, 1150, 1150, bg).buildup()
+		# Time += 1
+		# return Time
 
-def spotintro_page():
+	#elif Time == 30:
+	Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
+	Picture("roulette.png", 50, 150, 1150, 1150, bg).buildup()
+	Picture("視窗.png", 190, 150, 800, 400, bg).buildup()
+	result0 = "隨機結果"
+	result = Word(font1, result0, 560, 230, bg, (0, 0, 0)).buildup()
+	Picture("確定.png", 682, 348, 310, 110, bg).buildup()
+	d = Picture("確定.png", 682, 348, 310, 110, bg).buildup()
+	# if d.choose(x, y, z) == True:
+		# Cum == 7
+		# return Cum
+
+def spotintro_page(x, y, z):
 	font1 = pg.font.SysFont("myfont.ttf", 20)
 	Picture("第五頁背景.png", 0, 0, 1280, 720, bg).buildup()
 	Picture("placeholder.png", 25, 110, 48, 48, bg).buildup()
@@ -285,7 +292,7 @@ def spotintro_page():
 def choosedict_page(x, y, z):
 	font2 = pg.font.SysFont("myfont.ttf", 23)
 	Picture("區選單2.png", 50, 70, 1168, 570, bg).buildup()
-	dict("大安區", 190, 225, 111, 205 , x, y, z)
+	dict("大安區", 190, 225, 111, 205, x, y, z)
 	dict("中正區", 190, 323, 111, 303, x, y, z)
 	dict("萬華區", 190, 420, 111, 400, x, y, z)
 	dict("士林區", 455, 225, 375, 205, x, y, z)
