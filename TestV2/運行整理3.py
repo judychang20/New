@@ -383,7 +383,7 @@ def spotintro_page(x, y, z):
             elif everyday_list[i] not in week_list and flag == False:
                 flag = True
             elif everyday_list[i] not in week_list and flag == True:
-                a = 300 + 40*i
+                a = 300 + 40*(i-1)
                 opentime = " 　  " + everyday_list[i]
                 Word(font1, opentime, 100, a, bg, (0, 0, 0)).buildup()  
 
