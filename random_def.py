@@ -36,18 +36,18 @@ def recommend_know(dist, theme):
 			data[theme].remove(ano_item)
 			#print(data_item, ano_item)
 			count += 1
-			im1 = Image.open('C:\\Users\\User\\Documents\\GitHub\\New\\picture\\'+str(dist)+'\\'+str(data_item)
-			im1.show()
+			im1 = Image.open('C:\\Users\\User\\Documents\\GitHub\\New\\picture\\'+str(dist)+'\\'+str(data_item)+'.jpg')
+			#im1.show()
 			spot.append(data_item)
-			im2 = Image.open('C:\\Users\\User\\Documents\\GitHub\\New\\picture\\'+str(dist)+'\\'+str(ano_item)
-			im2.show()
+			im2 = Image.open('C:\\Users\\User\\Documents\\GitHub\\New\\picture\\'+str(dist)+'\\'+str(ano_item)+'.jpg')
+			#im2.show()
 			spot.append(ano_item)
 
 		elif len(data[theme]) > 0:  # 其他輪抽出一個景點
 			data_item = random.choice(data[theme])
 			data[theme].remove(data_item)
-			im1 = Image.open('C:\\Users\\User\\Documents\\GitHub\\New\\picture\\'+str(dist)+'\\'+str(data_item)
-			im1.show()
+			im1 = Image.open('C:\\Users\\User\\Documents\\GitHub\\New\\picture\\'+str(dist)+'\\'+str(data_item)+'.jpg')
+			#im1.show()
 			spot.append(data_item)
 			
 	return spot
@@ -69,11 +69,5 @@ def recommend_notknow(dist, theme):
 	return location_item
 	
 
-def show_info(locat):
-	'''
-	回傳景點資訊到最終頁面
-	'''
-	
-	pass
 		
 
