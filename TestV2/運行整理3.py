@@ -373,6 +373,8 @@ def spotintro_page(x, y, z):
         for i in len(time_list):
             everyday_list.append(week_list[i])
             everyday_list.append(time_list[i].split(";"))
+			if time_list[i] == "全日開放，族人居住，注意禮儀":
+				everyday_list.append(time_list[i].split("，"))
 
         for i in range(len(eveday_list)):
             if everyday_list[i] in week_list:
