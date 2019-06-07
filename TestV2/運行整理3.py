@@ -205,50 +205,10 @@ def compare_page(x, y ,z):
 	spot2 = Word(font1, Spot2, 850, 500, bg, (0, 0, 0)).buildup()
 	a = Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
 	b = Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
-	# if a.choose() == True:
-		# Cum = 4
-		# return Cum
-	
-# def compare_lose_page(x, y ,z):
-	# font1 = pg.font.SysFont("myfont.ttf", 35)
-	# font2 = pg.font.SysFont("myfont.ttf", 23)
-	# Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	# a = Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
-	# b = Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
-	# if a.choose(x, y, z):
-		# a.x_move(-500).buildup()
-	# elif b.choose(x, y, z):
-		# b.x_move(1300).buildup()
 
-# def compare_win_page():
-	# font1 = pg.font.SysFont("myfont.ttf", 35)
-	# font2 = pg.font.SysFont("myfont.ttf", 23)
-	# Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	# if Picture("選擇卡.png", 100, 100, 400, 500, bg).choose(x, y, z) == True:
-		# Picture("選擇卡.png", 100, 100, 400, 500, bg).x_move(#中間)
-		# Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
-	# if Picture("選擇卡.png", 800, 100, 400, 500, bg).choose(x, y, z) == True:
-		# Picture("選擇卡.png", 800, 100, 400, 500, bg).x_move(#中間)
-		# Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
 
 def roulette_page(x, y, z):
-	font1 = pg.font.SysFont("myfont.ttf", 56)
-	Time = 1
-	if x < 500 and Time != 5:
-		Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-		Picture("左搖.png", 100, 50, 700, 700, bg).buildup()
-		Time += 1
-	elif x > 500 and Time != 5:
-		Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-		Picture("右搖.png", 500, 50, 700, 700, bg).buildup()
-		Time += 1
-	else :
-		Picture("第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
-		Picture("左搖.png", 100, 50, 700, 700, bg).buildup()
-		Picture("視窗.png", 190, 150, 800, 400, bg).buildup()
-		result0 = "隨機結果"
-		result = Word(font1, result0, 560, 230, bg, (0, 0, 0)).buildup()
-		Picture("確定.png", 682, 348, 310, 110, bg).buildup()
+
 
 
 def spotintro_page(x, y, z):
