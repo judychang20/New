@@ -3,7 +3,7 @@ import pygame as pg
 def welcome_page():
     """載入歡迎畫面起始時所需的圖片及文字"""
 
-
+    A = 0
     background_image0 = pg.image.load("第一頁背景.png")
     background_image = pg.transform.scale(background_image0, (1280, 720)).convert()
     bg.blit(background_image, (0, 0)) #載入背景畫面到bg上
@@ -99,10 +99,10 @@ def spotintro_page():
     picture_image = pg.transform.scale(picture_image0, (48, 48)).convert_alpha()
     bg.blit(picture_image, (25, 580)) #載入圖片來源圖示到bg上
 
-    text2 = my_titlefont2.render("景點名", True, (0, 0, 0))
+    text2 = my_titlefont2.render(location1, True, (0, 0, 0))
     bg.blit(text2, (50, 30))  #載入景點名稱到bg上
 
-    text3 = my_textfont2.render("臺北市萬華區中華路一段", True, (0, 0, 0))
+    text3 = my_textfont2.render("臺北市文山區保儀路13巷3號", True, (0, 0, 0))
     bg.blit(text3, (80, 120)) #載入景點地址到bg上
 
     text3 = my_textfont2.render("門票：無", True, (0, 0, 0))
@@ -143,10 +143,10 @@ def spotintro_page():
     text12 = my_textfont2.render("圖片來源：", True, (0, 0, 0))
     bg.blit(text12, (80, 590)) #載入圖片來源文字到bg上
 
-    text13 = my_textfont2.render("臺北旅遊網", True, (0, 0, 0))
+    text13 = my_textfont2.render("臺北旅遊網等網路資源", True, (0, 0, 0))
     bg.blit(text13, (90, 640)) #載入圖片來源到bg上
 
-    spot_image0 = pg.image.load("第一頁背景.png")
+    spot_image0 = pg.image.load("/Users/arcwarriors/Documents/GitHub/New/picture/" + a[0:2] + "/" + location1 + ".jpg")
     spot_image = pg.transform.scale(spot_image0, (640, 360)).convert()
     bg.blit(spot_image, (540, 50))  #載入景點圖片到bg上
 
@@ -177,6 +177,8 @@ bstep = 0  #在Acum = 3 or 4時，用來作為勝利卡片移動速度的變數
 move_time = 0 #在Acum = 1 or 2時，用來判斷astep此時應為遞增或遞減的變數
 choose_time = 0 #在Acum = 1 or 2時，用來記錄此時玩家已經淘汰掉幾張牌
 width, height = 1280, 720
+A = 0
+CC = 2
 screen = pg.display.set_mode((width, height))
 pg.display.set_caption("標題標題")
 my_titlefont = pg.font.Font("myfont.ttf", 56)
@@ -184,13 +186,84 @@ my_textfont = pg.font.Font("myfont.ttf", 25)
 my_titlefont1 = pg.font.Font("myfont.ttf", 35)
 my_textfont1 = pg.font.Font("myfont.ttf", 23)
 my_titlefont2 = pg.font.Font("myfont.ttf", 33)
-my_textfont2 = pg.font.Font("myfont.ttf", 20)  #建立視窗及標題及建立各個字型大小以供後續使用
+my_textfont2 = pg.font.Font("myfont.ttf", 20)#建立視窗及標題及建立各個字型大小以供後續使用
+
+#===========================
+import csv
+import random
+from PIL import Image
+
+fh1 = '完整景點資料庫.csv'
+fh1 = open(fh1, 'r', encoding='utf-8', newline='')
+csv1 = csv.reader(fh1)
+reader = csv.DictReader(fh1)
+
+#for i in reader:
+    #if i["行政區"] == "北投" and i["主題"] == "宗教與古蹟":
+        #print(i)
 
 
+def recommend_know(dist, theme):
+    '''
+    知道去哪裡所回傳的景點
+    需要傳入的值: 行政區、心理測驗的主題結果
+    '''
+    data = dict()
+    spot = []
+    for row in reader:
+        if row["行政區"] == dist:
+            if row["主題"] not in data:
+                data[row["主題"]] = [row["景點名稱"]]
+            else:
+                data[row["主題"]].append(row["景點名稱"])
+        #print(dist, theme, data)
+
+    count = 0
+    for item in range(len(data[theme])):  # 隨機輸出兩兩比較
+        if count == 0:  # 第一輪抽出兩個景點
+            data_item = random.choice(data[theme])
+            data[theme].remove(data_item)
+            ano_item = random.choice(data[theme])
+            data[theme].remove(ano_item)
+            print(data_item, ano_item)
+            count += 1
+            spot.append(data_item)
+            spot.append(ano_item)
+
+
+        elif len(data[theme]) > 0:  # 其他輪抽出一個景點
+            data_item = random.choice(data[theme])
+            data[theme].remove(data_item)
+            # print(data_item)
+            spot.append(data_item)
+    return spot
+
+
+def recommend_notknow(dist, theme):
+    '''
+    不知道去哪裡所回傳的景點
+    需要傳入的值: 心理測驗的主題結果、輪盤的行政區
+    '''
+    location = []
+    for row in reader:
+        if row["行政區"] == dist and row["主題"] == theme:
+            location.append(row["景點名稱"])
+            print(location)
+
+    location_item = random.choice(location)
+    print(location_item)
+    return location_item
+
+
+#================
+
+dist = ""
+theme = ""
 bg = pg.Surface(screen.get_size()).convert()  #將bg設定為視窗的surface
 
 icon_image = pg.image.load("icon.png").convert()
 pg.display.set_icon(icon_image)      #設定程式的icon
+
 
 running = True
 while running:
@@ -204,30 +277,30 @@ while running:
         a_image = pg.transform.scale(a_image0, (400, 500))
         bg.blit(a_image, (100 - astep, 100))
         bg.blit(a_image, (800, 100))
-        text1 = my_textfont.render("大安區", True, (0, 0, 0))
+        text1 = my_textfont.render(spot[1], True, (0, 0, 0))
         bg.blit(text1, (950, 500))
         #讀取不會動的圖片及文字
 
         if move_time == 0 and astep > 600: #如果卡片向左完全移動出頁面外，則改變移動模式為1
-            text1 = my_textfont.render("內湖區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[0], True, (0, 0, 0))
             bg.blit(text1, (250 - astep, 500))
             move_time = 1
             if choose_time == 3: #若淘汰次數達三次，則跳至右邊卡片勝利頁面
                 Acum = 3
         elif move_time == 0 and astep <= 600: # 若卡片未完全移出視窗外，則遞增astep值，使圖片位置持續左移
             astep += 50
-            text1 = my_textfont.render("內湖區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[0], True, (0, 0, 0))
             bg.blit(text1, (250 - astep, 500))
         elif move_time == 1 and astep > 0: #若移動模式為１，則astep遞減，使圖片向右移動，直到卡片回到原來位置
             astep -= 50
-            text1 = my_textfont.render("南港區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[2], True, (0, 0, 0))
             bg.blit(text1, (250 - astep, 500))
         elif move_time == 1 and astep < 0:  # 防止卡片向右過頭
             astep = 0
-            text1 = my_textfont.render("南港區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[2], True, (0, 0, 0))
             bg.blit(text1, (250 - astep, 500))
         elif move_time == 1 and astep == 0: # 如果卡片回到原來位置，則Acum跳回0，回到兩兩起始頁面，同時初始化移動模式，淘汰次數加一
-            text1 = my_textfont.render("南港區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[2], True, (0, 0, 0))
             bg.blit(text1, (250 - astep, 500))
             choose_time += 1
             Acum = 0
@@ -245,29 +318,29 @@ while running:
         a_image = pg.transform.scale(a_image0, (400, 500))
         bg.blit(a_image, (100, 100))
         bg.blit(a_image, (800 + astep, 100))
-        text1 = my_textfont.render("內湖區", True, (0, 0, 0))
+        text1 = my_textfont.render(spot[1], True, (0, 0, 0))
         bg.blit(text1, (250, 500))
 
         if move_time == 0 and astep >= 600:
-            text1 = my_textfont.render("大安區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[0], True, (0, 0, 0))
             bg.blit(text1, (950 + astep, 500))
             move_time = 1
             if choose_time == 3:
                 Acum = 4
         elif move_time == 0 and astep < 600:
             astep += 50
-            text1 = my_textfont.render("大安區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[0], True, (0, 0, 0))
             bg.blit(text1, (950 + astep, 500))
         elif move_time == 1 and astep > 0:
             astep -= 50
-            text1 = my_textfont.render("北投區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[2], True, (0, 0, 0))
             bg.blit(text1, (950 + astep, 500))
         elif move_time == 1 and astep < 0:
             astep = 0
-            text1 = my_textfont.render("北投區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[2], True, (0, 0, 0))
             bg.blit(text1, (950 + astep, 500))
         elif move_time == 1 and astep == 0:
-            text1 = my_textfont.render("北投區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[2], True, (0, 0, 0))
             bg.blit(text1, (950 + astep, 500))
             choose_time += 1
             Acum = 0
@@ -331,6 +404,7 @@ while running:
             running = False
         if Cum == 0:            #用Cum在這做頁面的分涼
             welcome_page()
+            A = 0
         if Cum == 0.5:
             test_page()
             if event.type:
@@ -401,6 +475,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "大安區"
                     Cum = 0.5
             if 111 < mouse[0] < 348 and 303 < mouse[1] < 376:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -411,6 +486,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "中正區"
                     Cum = 0.5
             if 111 < mouse[0] < 348 and 400 < mouse[1] < 473:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -421,6 +497,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "萬華區"
                     Cum = 0.5
             if 375 < mouse[0] < 612 and 205 < mouse[1] < 278:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -431,6 +508,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "士林區"
                     Cum = 0.5
             if 375 < mouse[0] < 612 and 303 < mouse[1] < 376:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -441,6 +519,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "內湖區"
                     Cum = 0.5
             if 375 < mouse[0] < 612 and 400 < mouse[1] < 473:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -451,6 +530,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "大同區"
                     Cum = 0.5
             if 638 < mouse[0] < 875 and 205 < mouse[1] < 278:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -461,6 +541,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "文山區"
                     Cum = 0.5
             if 638 < mouse[0] < 875 and 303 < mouse[1] < 376:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -471,6 +552,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "北投區"
                     Cum = 0.5
             if 638 < mouse[0] < 875 and 400 < mouse[1] < 473:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -481,6 +563,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "南港區"
                     Cum = 0.5
             if 903 < mouse[0] < 1140 and 205 < mouse[1] < 278:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -491,6 +574,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "信義區"
                     Cum = 0.5
             if 903 < mouse[0] < 1140 and 303 < mouse[1] < 376:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -501,6 +585,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "中山區"
                     Cum = 0.5
             if 903 < mouse[0] < 1140 and 400 < mouse[1] < 473:
                 exit_image0 = pg.image.load("亮區按鈕.png")
@@ -511,6 +596,7 @@ while running:
                 screen.blit(bg, (0, 0))
                 pg.display.update()
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    dist = "松山區"
                     Cum = 0.5
             # 以上是若滑鼠游標移到各個行政區的按鈕上，按鈕會變亮，若此時按下去，則會進入Cum = 0.5，心理測驗的過度頁面
             # 按下返回則會回到首頁
@@ -546,8 +632,10 @@ while running:
             screen.blit(bg, (0, 0))
             pg.display.update()
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 1:
+                theme = "休閒與生態"
                 Cum = 2
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 4:
+                theme = "休閒與生態"
                 Cum = 3
         elif 110 < mouse[0] < 1110 and 293 < mouse[1] < 393 and (Cum == 1 or Cum == 4):
             button_image0 = pg.image.load("選項.png").convert()
@@ -559,8 +647,10 @@ while running:
             screen.blit(bg, (0, 0))
             pg.display.update()
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 1:
+                theme = "商圈"
                 Cum = 2
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 4:
+                theme = "商圈"
                 Cum = 3
         elif 110 < mouse[0] < 1110 and 426 < mouse[1] < 526 and (Cum == 1 or Cum == 4):
             button_image0 = pg.image.load("選項.png").convert()
@@ -572,8 +662,10 @@ while running:
             screen.blit(bg, (0, 0))
             pg.display.update()
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 1:
+                theme = "宗教與古蹟"
                 Cum = 2
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 4:
+                theme = "宗教與古蹟"
                 Cum = 3
         elif 110 < mouse[0] < 1110 and 560 < mouse[1] < 660 and (Cum == 1 or Cum == 4):
             button_image0 = pg.image.load("選項.png").convert()
@@ -585,8 +677,10 @@ while running:
             screen.blit(bg, (0, 0))
             pg.display.update()
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 1:
+                theme = "藝文與文化"
                 Cum = 2
             if event.type == pg.MOUSEBUTTONDOWN and Cum == 4:
+                theme = "藝文與文化"
                 Cum = 3
         # 以上為用滑鼠游標位置，判別心理測驗選項的亮、暗按鈕的切換 ，按下去後隨著有無選擇行政區，會到不同頁面
 
@@ -617,10 +711,20 @@ while running:
             bg.blit(roulette_image, (50, 150))
             window_image = pg.image.load("視窗.png")
             bg.blit(window_image, (190, 150))
-            text1 = my_titlefont.render("內湖區", True, (0, 0, 0)) #此欄輸入隨機結果
+            if A == 0:
+                a = random.choice(["大安區","萬華區","士林區","中正區","文山區","南港區","大同區", "中山區", "松山區", "信義區","北投區", "內湖區"])
+                A = 1
+                print(a)
+            else:
+                pass
+            text1 = my_titlefont.render(a, True, (0, 0, 0)) #此欄輸入隨機結果
             bg.blit(text1, (560, 230))
             screen.blit(bg, (0, 0))
             pg.display.update()
+            if A == 1:
+                location1 = recommend_notknow(a[0:2], theme)
+                print(location1)
+                A = 2
             if 682 < mouse[0] < 992 and 348 < mouse[1] < 458: # 此為用滑鼠判別確定鍵的亮、暗按鈕
                 sure_image0 = pg.image.load("確定.png")
                 sure_image = pg.transform.scale(sure_image0, (310, 110))
@@ -650,11 +754,15 @@ while running:
             a_image = pg.transform.scale(a_image0, (400, 500))
             bg.blit(a_image, (100, 100))
             bg.blit(a_image, (800, 100))
-            text1 = my_textfont.render("內湖區", True, (0, 0, 0))
+            if CC == 2:
+                spot = recommend_know(dist[0:2], theme)
+                CC += 1
+            text1 = my_textfont.render(spot[0], True, (0, 0, 0))
             bg.blit(text1, (250, 500))
-            text1 = my_textfont.render("大安區", True, (0, 0, 0))
+            text1 = my_textfont.render(spot[1], True, (0, 0, 0))
             bg.blit(text1, (950, 500))
             screen.blit(bg, (0, 0))
+
             pg.display.update()
             if event.type == pg.MOUSEBUTTONDOWN and 100 < mouse[0] < 500 and 100 < mouse[1] < 600:
                 Acum = 2
