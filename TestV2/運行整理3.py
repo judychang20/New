@@ -368,15 +368,13 @@ def spotintro_page(x, y, z):
     else:
         week_list = ["(一)", "(二)", "(三)", "(四)", "(五)", "(六)", "(日)"]#輸出營業時間
         time_list = [aspot.open1, aspot.open2, aspot.open3, aspot.open4, aspot.open5, aspot.open6, aspot.open7]
-        total = 0
         everyday_list = []
         flag = True
         for i in len(time_list):
             everyday_list.append(week_list[i])
             everyday_list.append(time_list[i].split(";")
-            total += int(len(everyday_list))
 
-        for i in range(total):
+        for i in range(len(eveday_list)):
             if everyday_list[i] in week_list:
                 a = 300 + 40*i
                 opentime = everyday_list[i] + " : " + everyday_list[i+1]
