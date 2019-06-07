@@ -3,7 +3,7 @@ import random
 
 # =================心理測驗亂碼＆心理測驗配合景點類別=================
 
-
+'''
 class ThemeToTest:
     def __init__(self, random_test):
         self.name = random_test[0]
@@ -79,63 +79,93 @@ reader1 = csv.DictReader(fh1)
 
 print(random_dist())
 
-
-# =================程式碼歷史紀錄=================
 '''
-dist = input()
+# =================景點細節回傳=================
+class Spot:
+    def __init__(self, detail):
+        self.name = detail[0]
+        self.intro = detail[1]
+        self.address = detail[2]
+        self.ticket = detail[3]
+        self.open1 = detail[4]
+        self.open2 = detail[5]
+        self.open3 = detail[6]
+        self.open4 = detail[7]
+        self.open5 = detail[8]
+        self.open6 = detail[9]
+        self.open7 = detail[10]
 
-fn1 = "/Users/Apple/Desktop/PBC.txt"
-fh1 = open(fn1, 'r', newline = '', encoding = 'utf-16')
-csv1 = csv.reader(fh1, delimiter = '\t')
-#print(next(csv1))
-reader1 = csv.DictReader(fh1, delimiter = '\t')
+
+fn2 = "/Users/Apple/Desktop/商管程設/New/完整景點資料庫.csv"
+fh2 = open(fn2, 'r', newline = '', encoding = 'utf-8')
+csv2 = csv.reader(fh2)
+reader2 = csv.DictReader(fh2)
+head = next(csv2)
+
+# 輸入是景點名稱！
+
+def show_info(spot_name):
+    for row in csv2:
+        if spot_name == row[2]:
+            description = row[2:]
+            print(description)
+            return description
+
+show_info("北投文物館") # 要使用這個來呼叫class
+
+spot_info = Spot(show_info("北投文物館")) # Spot內要改成上述
+print(spot_info.ticket)
+
+# =================兩兩選擇回傳圖片=================
 '''
+from PIL import Image
 
+
+def recommend_know(dist, theme):
+    
+    #知道去哪裡所回傳的景點
+    #需要傳入的值: 行政區、心理測驗的主題結果
+    
+    fn1 = "/Users/Apple/Desktop/商管程設/New/完整景點資料庫.csv"
+    fh1 = open(fn1, 'r', newline='', encoding='utf-8')
+    reader1 = csv.DictReader(fh1)
+
+    data = {}
+    spot = []
+    for row in reader1:
+        if row["行政區"] == dist:
+            if row["主題"] not in data:
+                data[row["主題"]] = [row["景點名稱"]]
+            else:
+                data[row["主題"]].append(row["景點名稱"])
+
+    # print(data)
+    count = 0
+    for item in range(len(data[theme])):  # 隨機輸出兩兩比較
+        if count == 0:  # 第一輪抽出兩個景點
+            data_item = random.choice(data[theme])
+            data[theme].remove(data_item)
+            ano_item = random.choice(data[theme])
+            data[theme].remove(ano_item)
+            # print(data_item, ano_item)
+            count += 1
+            im1 = Image.open('/Users/Apple/Desktop/商管程設/New/picture/' + str(dist) + '/' + str(data_item) + ".jpg")
+            im1.show()
+            spot.append(data_item)
+            im2 = Image.open('/Users/Apple/Desktop/商管程設/New/picture/' + str(dist) + '/' + str(ano_item) + ".jpg")
+            im2.show()
+            spot.append(ano_item)
+
+        elif len(data[theme]) > 0:  # 其他輪抽出一個景點
+            data_item = random.choice(data[theme])
+            data[theme].remove(data_item)
+            im1 = Image.open('/Users/Apple/Desktop/商管程設/New/picture/' + str(dist) + '/' + str(data_item) + ".jpg")
+            im1.show()
+            spot.append(data_item)
+
+    return spot
+
+recommend_know("北投", "宗教與古蹟")
+# 跑完可能會出現：LSOpenURLsWithRole() failed for the application /Applications/Preview.app with error -10810 for the file /var/folders/l1/0ktl75017bs2c19qpc64v7s40000gn/T/tmpj3y9z7io.PNG.
+# 要請再注意
 '''
-attr = dict()
-for row in reader1:
-    #print(row)
-    if row['行政區'] == dist:
-        #print(dist)
-
-        if row['主題'] not in attr:
-            attr[row['主題']] = [row['景點名稱'], row['簡介'], row['地址'], row['有無門票'], row['門票費用'], row['開放時間-一']]
-        else:
-            attr[row['主題']].append([row['景點名稱'], row['簡介'], row['地址'], row['有無門票'], row['門票費用'], row['開放時間-一']])
-print(attr)
-'''
-# 景點類別為key，心理測驗為value（一個list）的dictionary
-
-
-'''
-test = dict()
-
-for theme in next(reader2):
-    print(theme)
-    test[theme] = []
-for row in reader2:
-    print(row)
-    test['宗教與古蹟'].append(row['宗教與古蹟'])
-    test['藝文與文化'].append(row['藝文與文化'])
-    test['休閒與生態'].append(row['休閒與生態'])
-    test['商圈'].append(row['商圈'])
-print(test)
-
-# 心理測驗亂數，用list去randomize（random.），各個類別產出一個心理測驗答案
-test_hsty = random.choice(test['宗教與古蹟'])
-test_cltr = random.choice(test['藝文與文化'])
-test_ntr = random.choice(test['休閒與生態'])
-test_shp = random.choice(test['商圈'])
-print(test_hsty)
-print(test_cltr)
-print(test_ntr)
-print(test_shp)
-
-# 傳入的值會是哪個心理測驗答案
-'''
-
-
-
-
-
-
