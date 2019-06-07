@@ -372,7 +372,7 @@ def spotintro_page(x, y, z):
         flag = True
         for i in len(time_list):
             everyday_list.append(week_list[i])
-            everyday_list.append(time_list[i].split(";")
+            everyday_list.append(time_list[i].split(";"))
 
         for i in range(len(eveday_list)):
             if everyday_list[i] in week_list:
