@@ -361,12 +361,17 @@ def spotintro_page(x, y, z):
 	Picture(picture, 540,50, 640, 360, bg).buildup()
 	
 	#輸出營業時間
-	week_list = ["(一)", "(二)", "(三)", "(四)", "(五)", "(六)", "(日)"]#輸出營業時間
-	time_list = [aspot.open1, aspot.open2, aspot.open3, aspot.open4, aspot.open5, aspot.open6, aspot.open7]
-	for i in range(7):
-		a = 300 + 40*i
-		opentime = week_list[i] + " : " + time_list[i]
-		Word(font1, opentime, 100, a, bg, (0, 0, 0)).buildup()
+	if aspot.open1 == "全日開放":#特殊營業時間
+		Word(font1, aspot.open1, 100, 300, bg, (0, 0, 0)).buildup()
+	elif aspot.open1 == "電話預約制":
+		Word(font1, aspot.open1, 100, 300, bg, (0, 0, 0)).buildup()
+	else:
+		week_list = ["(一)", "(二)", "(三)", "(四)", "(五)", "(六)", "(日)"]#輸出營業時間
+		time_list = [aspot.open1, aspot.open2, aspot.open3, aspot.open4, aspot.open5, aspot.open6, aspot.open7]
+		for i in range(7):
+			a = 300 + 40*i
+			opentime = week_list[i] + " : " + time_list[i]
+			Word(font1, opentime, 100, a, bg, (0, 0, 0)).buildup()
 
 	#輸出介紹文字	
 	introduce_list = []
