@@ -80,7 +80,8 @@ class Picture:
 	def choose(self, x, y, z):
 		if self.xplace < x < self.xplace + self.xsize and self.yplace < y < self.yplace + self.ysize:
 			if z == pg.MOUSEBUTTONDOWN:
-				return True	
+				Flag = True
+		return Flag
 
 class Window:
 
@@ -133,7 +134,7 @@ def welcome_page(x, y, z):
 	word1 = Word(font2, "我要去___區", 570, 375, bg, (255,255,255))
 	a = Button("真亮按鈕.png", "按鈕.png", 330, 350, bg, 624, 82, word1, 200)
 	a.WaitToMouseOver()
-	a.isOver(x, y, z, 8)
+	a.isOver(x, y, z, 3)
 	word2 = Word(font2, "我還沒有想法", 570, 505, bg, (255,255,255))
 	b = Button("真亮按鈕.png", "按鈕.png", 330, 480, bg, 624, 82, word2, 200)
 	b.WaitToMouseOver()
@@ -195,13 +196,19 @@ def test_haveidea_page(x, y, z):
 	c.isOver(x, y, z, 3)
 	d.isOver(x, y, z, 3)
 
-# def compare_page():
-	# font1 = pg.font.SysFont("myfont.ttf", 35)
-	# font2 = pg.font.SysFont("myfont.ttf", 23)
-	# Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
+def compare_page(x, y ,z):
+	font1 = pg.font.SysFont("myfont.ttf", 25)
+	Picture("第四頁背景.png", 0, 0, 1280, 720, bg).buildup()
+	Spot1 = "龍山寺"
+	Spot2 = "西門紅樓"
+	spot1 = Word(font1, Spot1, 150, 500, bg, (0, 0, 0)).buildup()
+	spot2 = Word(font1, Spot2, 850, 500, bg, (0, 0, 0)).buildup()
+	a = Picture("選擇卡.png", 100, 100, 400, 500, bg).buildup()
+	b = Picture("選擇卡.png", 800, 100, 400, 500, bg).buildup()
+	# if a.choose() == True:
+		# Cum = 4
+		# return Cum
 	
-	
-
 # def compare_lose_page(x, y ,z):
 	# font1 = pg.font.SysFont("myfont.ttf", 35)
 	# font2 = pg.font.SysFont("myfont.ttf", 23)
