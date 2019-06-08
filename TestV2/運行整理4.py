@@ -136,6 +136,16 @@ class Spot:
 		self.open7 = open7
 
 
+class ThemeToTest:
+	def __init__(self, random_test):
+		self.name = random_test[0]
+		self.list = [random_test[1], random_test[2],random_test[3], random_test[4]]
+		self.history = random_test[1]
+		self.art = random_test[2]
+		self.fun = random_test[3]
+		self.shop = random_test[4]
+
+
 
 def Main(circumstance, x, y, z):
 	if circumstance == 0:
@@ -177,15 +187,17 @@ def test_noidea_page(x, y, z):
 	global Controller2, alist
 	if Controller2 == 0:
 		alist = psycho_test()
+		random.shuffle(alist.list)
 		Controller2 = 1
 	font1 = pg.font.Font("myfont.ttf", 35)
 	font2 = pg.font.Font("myfont.ttf", 23)
 	Picture("第二頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	Question = alist[0]
-	OptionA = alist[1]
-	OptionB = alist[2]
-	OptionC = alist[3]
-	OptionD = alist[4]
+	Question = alist.name
+	#print(alist.list)
+	OptionA = alist.list[0]
+	OptionB = alist.list[1]
+	OptionC = alist.list[2]
+	OptionD = alist.list[3]
 	Word(font1, Question, 90, 50, bg, (0, 0, 0)).buildup()
 	option1 = Word(font2, OptionA, 130, 190, bg, (255, 255, 255))
 	option2 = Word(font2, OptionB, 130, 323, bg, (255, 255, 255))
@@ -199,25 +211,28 @@ def test_noidea_page(x, y, z):
 	c.WaitToMouseOver()
 	d = Button("亮按鈕.png", "選項.png", 110, 560, bg, 1000, 100, option4, 200)
 	d.WaitToMouseOver()
-	a.isOver(x, y, z, 6, "宗教與古蹟")
-	b.isOver(x, y, z, 6, "藝文與文化")
-	c.isOver(x, y, z, 6, "休閒與生態")
-	d.isOver(x, y, z, 6, "商圈")
+	a.isOver(x, y, z, 6, test_choice(alist.list[0]))
+	b.isOver(x, y, z, 6, test_choice(alist.list[1]))
+	c.isOver(x, y, z, 6, test_choice(alist.list[2]))
+	d.isOver(x, y, z, 6, test_choice(alist.list[3]))
+	#print(alist.list[0], test_choice(alist.list[0]))
 
 
 def test_haveidea_page(x, y, z):
 	global Controller2, alist
 	if Controller2 == 0:
 		alist = psycho_test()
+		random.shuffle(alist.list)
 		Controller2 = 1
 	font1 = pg.font.Font("myfont.ttf", 35)
 	font2 = pg.font.Font("myfont.ttf", 23)
 	Picture("第二頁背景.png", 0, 0, 1280, 720, bg).buildup()
-	Question = alist[0]
-	OptionA = alist[1]
-	OptionB = alist[2]
-	OptionC = alist[3]
-	OptionD = alist[4]
+	Question = alist.name
+	#print(alist.list)
+	OptionA = alist.list[0]
+	OptionB = alist.list[1]
+	OptionC = alist.list[2]
+	OptionD = alist.list[3]
 	Word(font1, Question, 90, 50, bg, (0, 0, 0)).buildup()
 	option1 = Word(font2, OptionA, 130, 190, bg, (255, 255, 255))
 	option2 = Word(font2, OptionB, 130, 323, bg, (255, 255, 255))
@@ -231,10 +246,10 @@ def test_haveidea_page(x, y, z):
 	c.WaitToMouseOver()
 	d = Button("亮按鈕.png", "選項.png", 110, 560, bg, 1000, 100, option4, 200)
 	d.WaitToMouseOver()
-	a.isOver(x, y, z, 9, "宗教與古蹟")
-	b.isOver(x, y, z, 9, "藝文與文化")
-	c.isOver(x, y, z, 9, "休閒與生態")
-	d.isOver(x, y, z, 9, "商圈")
+	a.isOver(x, y, z, 9, test_choice(alist.list[0]))
+	b.isOver(x, y, z, 9, test_choice(alist.list[1]))
+	c.isOver(x, y, z, 9, test_choice(alist.list[2]))
+	d.isOver(x, y, z, 9, test_choice(alist.list[3]))
 
 
 def bell_page(x, y, z):
@@ -262,10 +277,11 @@ def bell_page(x, y, z):
 			aspot = recommend_notknow(adist[0:2], atheme)
 			#print(aspot)
 			Controller = 1
-		if 14 >= len(aspot.name) > 7:
+		if 10 >= len(aspot.name) > 7:
 			Word(font3, aspot.name, 530, 235, bg, (0, 0, 0)).buildup()
-		elif len(aspot.name) > 14:
-			Word(font3, aspot.name[0:9], 530, 235, bg, (0, 0, 0)).buildup()
+		elif len(aspot.name) > 10:
+			Word(font3, aspot.name[0:9], 530, 185, bg, (0, 0, 0)).buildup()
+			Word(font3, aspot.name[9:], 530, 235, bg, (0, 0, 0)).buildup()
 		else:
 			Word(font2, aspot.name, 560, 230, bg, (0, 0, 0)).buildup()
 		a = Button("確定暗.png", "確定亮.png", 682, 348, bg, 310, 110, word1, 250)
@@ -325,9 +341,9 @@ def spotintro_page(x, y, z):
 	spot = aspot.name
 	address = aspot.address
 	ticket = "門票："+ aspot.ticket
-	if 13 > len(aspot.name) > 9:
+	if 11 >= len(aspot.name) > 9:
 		Word(font3, spot, 50, 30, bg, (0, 0, 0)).buildup()
-	elif len(aspot.name) > 13:
+	elif len(aspot.name) > 11:
 		Word(font4, spot[0:13], 50, 25, bg, (0, 0, 0)).buildup()
 		Word(font4, spot[13:], 50, 50, bg, (0, 0, 0)).buildup()
 	else:
@@ -355,6 +371,14 @@ def spotintro_page(x, y, z):
 		for i in range(len(print_list[0])):
 			a = 300 + 40 * i
 			Word(font1, print_list[0][i], 100, a, bg, (0, 0, 0)).buildup()
+	elif aspot.open1 == "不開放" and "；" in aspot.open2:
+		not_open = "星期一不開放"
+		Word(font1, not_open, 100, 300, bg, (0, 0, 0)).buildup()
+		Word(font1, "其餘時間：", 100, 340, bg, (0, 0, 0)).buildup()
+		a = aspot.open2.split("；")
+		for i in a:
+			b = 340 + 40 * i
+			Word(font1, a[i], 100, b, bg, (0, 0, 0)).buildup()
 	else:
 		week_list = ["(一)", "(二)", "(三)", "(四)", "(五)", "(六)", "(日)"]#輸出營業時間
 		time_list = [aspot.open1, aspot.open2, aspot.open3, aspot.open4, aspot.open5, aspot.open6, aspot.open7]
@@ -501,6 +525,7 @@ def recommend_notknow(dist, theme):
 			#print(location)
 		if data.distinct == dist and data.theme == theme:
 			speciallocation.append(data)
+	#print(speciallocation)
 	location_item = random.choice(speciallocation)
 	#print(speciallocation)
 	return location_item
@@ -517,11 +542,21 @@ def psycho_test():
 
 	for a in csv2:
 		#print(a[0], a[1], a[2], a[3], a[4])
-		Test.append([a[0], a[1], a[2], a[3], a[4]])
+		Test.append(ThemeToTest(a))
 	atest = random.choice(Test)
 	#print(Test)
 	return atest
 
+
+def test_choice(choice):
+	if choice == alist.history:
+		return "宗教與古蹟"
+	elif choice == alist.art:
+		return "藝文與文化"
+	elif choice == alist.fun:
+		return "休閒與生態"
+	elif choice == alist.shop:
+		return "商圈"
 
 window = Window(1280, 720, "標題標題", "icon.png")
 bg = window.setup()
