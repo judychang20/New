@@ -341,7 +341,7 @@ def spotintro_page(x, y, z):
 	Word(font1, "營業時間", 80, 255, bg, (0, 0, 0)).buildup()
 	Word(font1, "圖片來源", 80, 590, bg, (0, 0, 0)).buildup()
 	Word(font1, "臺北旅遊網等網路資源", 90, 640, bg, (0, 0, 0)).buildup()
-	picture = "/Users/arcwarriors/Documents/GitHub/New/picture/" + aspot.distinct + "/" + aspot.name + ".jpg"
+	picture = "C:\\Users\\asus\\Desktop\\python\\github\\picture" + aspot.distinct + "\\" + aspot.name + ".jpg"
 	Picture(picture, 540,50, 640, 360, bg).buildup()
 	
 	#輸出營業時間
