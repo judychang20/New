@@ -247,6 +247,8 @@ def bell_page(x, y, z):
 	if Cir == 0 and aTime != 10:
 		Picture("Background/第三頁背景.png", 0, 0, 1280, 720, bg).buildup()
 		Picture("Resource/左搖.png", 100, 50, 700, 700, bg).buildup()
+		if aTime == 0:
+			Picture("Resource/鈴鐺提醒.png", 170, 250, 900, 250, bg).buildup()
 		aTime += 1
 		Cir = 1
 	elif Cir == 1 and aTime != 10:
@@ -283,6 +285,8 @@ def roulette_page(x, y, z):
 		roulette_image = pg.transform.scale(roulette_image0, (1150, 1150)).convert_alpha()
 		bg.blit(roulette_image, (50, 150))
 		pg.draw.polygon(bg, (0, 0, 0), ((580, 50), (680, 50), (630, 260)))
+		if Time == 0:
+			Picture("Resource/輪盤提醒.png", 170, 250, 900, 250, bg).buildup()
 		Time += 1
 		Cir = 1
 		window.screen.blit(bg, (0, 0))
